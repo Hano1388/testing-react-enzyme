@@ -10,13 +10,16 @@ class CreateTodo extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault();
 
-    this.setState({ todo: ""});
+    this.setState({ todo: ''});
   }
 
   render() {
     return (
       <div className="ui container">
-        <form className="ui fluid form" onSubmit={this.onFormSubmit}>
+        <form
+          className="ui fluid form"
+          onSubmit={this.onFormSubmit}
+        >
           <div className="field">
             <input
               type="text"

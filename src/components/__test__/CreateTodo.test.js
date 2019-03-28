@@ -27,4 +27,15 @@ describe('<CreateTodo />', () => {
     expect(wrapped.find('input').prop('value')).toEqual('new todo');
   });
 
+  it('When form get submitted, input text gets emptied', () => {
+    wrapped.find('input').simulate('change', {
+      target: { value: 'another todo' }
+    });
+    wrapped.update();
+    expect(wrapped.find('input').prop('value')).toEqual('another todo');
+    wrapped.find('form').simulate('submit');
+    wrapped.update();
+    expect(wrapped.find('input').prop('value')).toEqual('');
+  });
+
 });
