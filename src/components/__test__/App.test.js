@@ -1,14 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 
 import App from '../App';
+import CreateTodo from '../CreateTodo';
 
 it('Shows Create todo box', () => {
-  const div = document.createElement('div');
+  const wrapped = shallow(<App />);
 
-  ReactDOM.render(<App />, div);
-
-  expect(div.innerHTML).toContain('TodoList');
-
-  ReactDOM.unmountComponentAtNode(div);
+  expect(wrapped.find(CreateTodo).length).toEqual(1);
 })
