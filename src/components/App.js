@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CreateTodo from './CreateTodo';
-import TodoList from './TodoList';
+import CreateTodo from 'components/CreateTodo';
+import TodoList from 'components/TodoList';
 
 const App = () => {
   return (
