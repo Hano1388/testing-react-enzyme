@@ -5,11 +5,11 @@ import CreateTodo from 'components/CreateTodo';
 
 describe('<CreateTodo />', () => {
   let wrapped;
-  beforeEach( () => {
+  beforeEach(() => {
     wrapped = mount(<CreateTodo />);
   });
 
-  afterEach( () => {
+  afterEach(() => {
     wrapped.unmount();
   });
 
@@ -18,24 +18,21 @@ describe('<CreateTodo />', () => {
     expect(wrapped.find('button').length).toEqual(1);
   });
 
-  it('has a text input that user can type in', () => {
-    wrapped.find('input').simulate('change', {
-      target: { value: 'new todo' }
+  describe('The input text', () => {
+    beforeEach(() => {
+      wrapped.find('input').simulate('change', {
+        target: { value: 'new todo' }
+      });
+      wrapped.update();
     });
-    wrapped.update();
-
-    expect(wrapped.find('input').prop('value')).toEqual('new todo');
-  });
-
-  it('When form get submitted, input text gets emptied', () => {
-    wrapped.find('input').simulate('change', {
-      target: { value: 'another todo' }
+    it('has a text input that user can type in', () => {
+      expect(wrapped.find('input').prop('value')).toEqual('new todo');
     });
-    wrapped.update();
-    expect(wrapped.find('input').prop('value')).toEqual('another todo');
-    wrapped.find('form').simulate('submit');
-    wrapped.update();
-    expect(wrapped.find('input').prop('value')).toEqual('');
-  });
 
+    it('When form get submitted, input text gets emptied', () => {
+      wrapped.find('form').simulate('submit');
+      wrapped.update();
+      expect(wrapped.find('input').prop('value')).toEqual('');
+    });
+  });
 });
