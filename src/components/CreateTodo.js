@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { saveTodo } from 'actions';
 
 class CreateTodo extends React.Component {
   state = { todo: '' };
@@ -38,4 +41,7 @@ class CreateTodo extends React.Component {
   }
 }
 
-export default CreateTodo;
+export default connect(
+  null,
+  { saveTodo }
+)(CreateTodo);
