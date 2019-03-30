@@ -1,12 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import Root from 'Root';
 
 import CreateTodo from 'components/CreateTodo';
 
 describe('<CreateTodo />', () => {
   let wrapped;
   beforeEach(() => {
-    wrapped = mount(<CreateTodo />);
+    wrapped = mount(
+      <Root>
+        <CreateTodo />
+      </Root>
+    );
   });
 
   afterEach(() => {
