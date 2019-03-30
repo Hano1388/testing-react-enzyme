@@ -12,7 +12,7 @@ class CreateTodo extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-
+    this.props.saveTodo(this.state.todo);
     this.setState({ todo: ''});
   }
 

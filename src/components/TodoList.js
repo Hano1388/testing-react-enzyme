@@ -1,9 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const TodoList = () => {
-  return (
-    <div>TodoList</div>
-  )
-};
+class TodoList extends React.Component {
 
-export default TodoList;
+  renderTodoList() {
+    return this.props.todos.map(todo => {
+      return <li key={todo}>{todo}</li>
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <ul>
+          {this.renderTodoList()}
+        </ul>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = ({todos}) => {
+  return { todos }
+}
+
+export default connect(
+  mapStateToProps
+)(TodoList);
