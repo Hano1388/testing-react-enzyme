@@ -18,9 +18,9 @@ describe('<CreateTodo />', () => {
     wrapped.unmount();
   });
 
-  it('has a text input and a button', () => {
+  it('has a text input and two buttons', () => {
     expect(wrapped.find('input').length).toEqual(1);
-    expect(wrapped.find('button').length).toEqual(1);
+    expect(wrapped.find('button').length).toEqual(2);
   });
 
   describe('The input text', () => {

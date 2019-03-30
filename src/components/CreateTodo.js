@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { saveTodo } from 'actions';
+import { saveTodo, fetchTodos } from 'actions';
 
 class CreateTodo extends React.Component {
   state = { todo: '' };
@@ -32,10 +32,16 @@ class CreateTodo extends React.Component {
             <div className="ui pointing red basic label">
               Please enter a Todo
             </div>
-            <button className="ui right floated primary button">Submit</button>
+            <button className="ui right floated primary button">Create Todo</button>
           </div>
           <div className="ui divider"></div>
         </form>
+        <button
+          onClick={this.props.fetchTodos}
+          className="ui right floated yellow button"
+        >
+          Fetch Todos
+        </button>
       </div>
     );
   }
@@ -43,5 +49,8 @@ class CreateTodo extends React.Component {
 
 export default connect(
   null,
-  { saveTodo }
+  {
+    saveTodo,
+    fetchTodos
+  }
 )(CreateTodo);
