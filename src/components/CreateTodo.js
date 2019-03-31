@@ -38,7 +38,7 @@ class CreateTodo extends React.Component {
         </form>
         <button
           onClick={this.props.fetchTodos}
-          className="ui right floated yellow button"
+          className="ui right floated yellow button fetch-todos"
         >
           Fetch Todos
         </button>
