@@ -27,12 +27,12 @@ describe('<App />', () => {
   it('fetches a list of todos and generate (li)s for them', (done) => {
 
     wrapped.find('.fetch-todos').simulate('click');
-    setTimeout(() => {
+    moxios.wait(() => {
       wrapped.update();
       expect(wrapped.find('li').length).toEqual(2);
 
       done();
       wrapped.unmount();
-    }, 100);
+    });
   })
 });
