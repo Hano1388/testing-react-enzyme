@@ -6,6 +6,21 @@ import { saveTodo, fetchTodos } from 'actions';
 class CreateTodo extends React.Component {
   state = { todo: '' };
 
+  componentDidMount() {
+    this.navigateMe();
+  }
+
+  componentDidUpdate() {
+    this.navigateMe();
+  }
+
+  navigateMe() {
+    if(!this.props.auth) {
+      document.querySelector('#home-link').click(); // NOTE: this is a bad approach, the following line will do the work but, I am only using it to trigger an on click event on the home link
+      this.props.history.push('/');
+    }
+  }
+
   onInputChange = (event) => {
     this.setState({ todo: event.target.value });
   }
@@ -14,6 +29,14 @@ class CreateTodo extends React.Component {
     event.preventDefault();
     this.props.saveTodo(this.state.todo);
     this.setState({ todo: ''});
+    document.querySelector('#home-link').click(); // NOTE: this is a bad approach, the following line will do the work but, I am only using it to trigger an on click event on the home link
+    this.props.history.push('/');
+  }
+
+  fetchTodoList = () => {
+    this.props.fetchTodos();
+    document.querySelector('#home-link').click(); // NOTE: this is a bad approach, the following line will do the work but, I am only using it to trigger an on click event on the home link
+    this.props.history.push('/');
   }
 
   render() {
@@ -37,7 +60,7 @@ class CreateTodo extends React.Component {
           <div className="ui divider"></div>
         </form>
         <button
-          onClick={this.props.fetchTodos}
+          onClick={this.fetchTodoList}
           className="ui right floated yellow button fetch-todos"
         >
           Fetch Todos
@@ -47,8 +70,12 @@ class CreateTodo extends React.Component {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     saveTodo,
     fetchTodos

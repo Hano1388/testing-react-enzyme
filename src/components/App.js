@@ -11,7 +11,7 @@ class App extends React.Component {
   state = {
     activeLink: {
       home: window.location.pathname === '/' ? 'item active' : 'item',
-      createTodo: window.location.pathname === '/todos' ? 'item active' : 'item'
+      createTodo: window.location.pathname === '/new' ? 'item active' : 'item'
     }
   }
 
@@ -43,6 +43,7 @@ class App extends React.Component {
       {this.renderButton()}
         <div className="ui tabular menu">
           <Link
+            id="home-link"
             className={this.state.activeLink.home}
             to="/"
             onClick={e => this.setState({ activeLink: { home: 'item active', createTodo: 'item' } })}
@@ -50,8 +51,9 @@ class App extends React.Component {
             Home
           </Link>
           <Link
+            id="new-todo-link"
             className={this.state.activeLink.createTodo}
-            to="/todos"
+            to="/new"
             onClick={e => this.setState({ activeLink: { home: 'item', createTodo: 'item active' } })}
           >
             Create a Todo
@@ -64,8 +66,8 @@ class App extends React.Component {
     return (
       <div>
         {this.renderHeader()}
-        <Route path="/" exact component={CreateTodo} />
-        <Route path="/todos" component={TodoList} />
+        <Route path="/" exact component={TodoList} />
+        <Route path="/new" component={CreateTodo} />
       </div>
     );
   }
