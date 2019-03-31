@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
   SAVE_TODO,
-  FETCH_TODOS
+  FETCH_TODOS,
+  AUTHENTICATE
 } from 'actions/types';
 
 export const saveTodo = todo => {
@@ -15,4 +16,11 @@ export const fetchTodos = () => async (dispatch) => {
   const response = await axios.get('http://jsonplaceholder.typicode.com/todos');
 
   dispatch({ type: FETCH_TODOS, payload: response.data });
+}
+
+export const authenticate = isLoggedIn => {
+  return {
+    type: AUTHENTICATE,
+    payload: isLoggedIn
+  }
 }
