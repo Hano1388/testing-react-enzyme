@@ -4,13 +4,13 @@ export default ({ dispatch }) => next => action => {
   //  if it is then, wait for it to resolve
 
   if (!action.payload || !action.payload.then) {
-    next(action);
+    return next(action);
   }
 
   // if there is a promise then wait for the promise to resolve
   // then create a new action with resolved data and dispatch it
-  action.payload.then( response => {
-    const newAction = { ...action, payload: response };
+  action.payload.then(function(response){
+    const newAction = { ...action, payload: response.data };
     dispatch(newAction);
-  })
+  });
 }

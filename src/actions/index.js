@@ -12,10 +12,19 @@ export const saveTodo = todo => {
   }
 };
 
-export const fetchTodos = () => async (dispatch) => {
-  const response = await axios.get('http://jsonplaceholder.typicode.com/todos');
+// export const fetchTodos = () => async (dispatch) => {
+//   const response = await axios.get('http://jsonplaceholder.typicode.com/todos');
+//
+//   dispatch({ type: FETCH_TODOS, payload: response.data });
+// }
 
-  dispatch({ type: FETCH_TODOS, payload: response.data });
+export const fetchTodos = () => {
+  const response = axios.get('http://jsonplaceholder.typicode.com/todos');
+
+  return {
+    type: FETCH_TODOS,
+    payload: response
+  }
 }
 
 export const authenticate = isLoggedIn => {
